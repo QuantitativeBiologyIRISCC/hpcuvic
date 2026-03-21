@@ -8,110 +8,135 @@
 </head>
 <body>
     <header>
-        <h1>Manual Cluster HPC UVic-UCC</h1>
-	<img src="imatges/logo_3linies_uvic_color.jpg" class="logo" style="height: 30px;">
+        <div>
+            <h1>Manual Cluster HPC UVic-UCC</h1>
+            <div class="language-toggle" aria-label="Language selector">
+                <button type="button" class="language-button is-active" data-lang-button="ca">Català</button>
+                <button type="button" class="language-button" data-lang-button="en">English</button>
+            </div>
+        </div>
+        <img src="imatges/logo_3linies_uvic_color.jpg" class="logo" alt="UVic-UCC logo" style="height: 30px;">
     </header>
 
-    <nav>
+    <nav data-lang="ca">
         <h2>Índex</h2>
         <ul>
             <li><a href="#introduccio">Introducció i Recursos del Clúster</a></li>
             <li><a href="#vpn-ssh">Connectar-se via VPN i SSH</a></li>
             <li><a href="#guia-basica">Guia Bàsica per Enviar Jobs</a></li>
             <li><a href="#transferencia">Comandes Bàsiques</a></li>
-	    <li><a href="#particions">Característiques de les Particions</a></li>
-		<li>
-      <a href="#software">Tutorials per a usar el Software</a>
-      <ul>
-        <li><a href="#apptainer">Apptainer</a></li>
-        <li><a href="#easybuild">Easybuild</a></li>
-      </ul>		
-    </li>
-	<li><a href="#tiquets">Com obrir tiquets a l'URespon (ex. sol·licitar software, altes nous usuaris)</a></li>
-	<li><a href="#recursos">Com optimitzar els recursos (informe d'eficiència)</a></li>
+            <li><a href="#particions">Característiques de les Particions</a></li>
+            <li>
+                <a href="#apptainer">Tutorials per a usar el Software</a>
+                <ul>
+                    <li><a href="#apptainer">Apptainer</a></li>
+                    <li><a href="#easybuild">Easybuild</a></li>
+                </ul>
+            </li>
+            <li><a href="#tiquets">Com obrir tiquets a l'URespon (ex. sol·licitar software, altes nous usuaris)</a></li>
+            <li><a href="#recursos">Com optimitzar els recursos (informe d'eficiència)</a></li>
+        </ul>
+    </nav>
+
+    <nav data-lang="en" hidden>
+        <h2>Index</h2>
+        <ul>
+            <li><a href="#introduction">Introduction and Cluster Resources</a></li>
+            <li><a href="#vpn-ssh-en">Connect via VPN and SSH</a></li>
+            <li><a href="#basic-guide">Basic Guide to Submitting Jobs</a></li>
+            <li><a href="#basic-commands">Basic Commands</a></li>
+            <li><a href="#partitions">Partition Features</a></li>
+            <li>
+                <a href="#apptainer-en">Software Tutorials</a>
+                <ul>
+                    <li><a href="#apptainer-en">Apptainer</a></li>
+                    <li><a href="#easybuild-en">Easybuild</a></li>
+                </ul>
+            </li>
+            <li><a href="#tickets">How to open URespon tickets (for example, request software or new user accounts)</a></li>
+            <li><a href="#resources">How to optimize resources (efficiency report)</a></li>
         </ul>
     </nav>
 
     <main>
-        <section id="introduccio">
-            <h2>Introducció i Recursos del Clúster</h2>
-            <p>
-                Aquest manual està dissenyat per ajudar els nous usuaris del clúster de càlcul de la UVic-UCC. El seu objectiu
-                és proporcionar les eines necessàries per començar a utilitzar el clúster de manera eficient. Es recomana tenir
-                coneixements bàsics del sistema Unix per poder treballar còmodament.
-            </p>
-            <h3>Què és un clúster de càlcul?</h3>
-            <p>
-                Un clúster de càlcul és un conjunt d'ordinadors que treballen conjuntament per processar tasques de manera
-                eficient. Un dels ordinadors, anomenat node mestre o node d'inici de sessió, s'encarrega d'assignar els
-                programes (anomenats jobs) als altres ordinadors mitjançant un gestor de cues (scheduler).
-            </p>
-            
-            <!-- Afegim la imatge -->
-            <figure>
-                <img src="imatges/compute_cluster.png" alt="Representació d'un clúster de càlcul" style="max-width: 100%; height: auto;">
-                <figcaption>Representació esquemàtica d'un clúster de càlcul.</figcaption>
-            </figure>
-            
-            <h3>Recursos del Clúster</h3>
-            <ul>
-                <li><strong>112 CPUs:</strong> Distribuïdes en diferents nodes per optimitzar el càlcul paral·lel.</li>
-                <li><strong>515 GB de RAM:</strong> Repartida segons les necessitats dels usuaris.</li>
-                <li><strong>2 GPUs:</strong> Disponibles per a càlculs d'intel·ligència artificial.</li>
-                <li><strong>8 TB d'emmagatzematge:</strong> Per guardar dades i resultats.</li>
-            </ul>
-	    <h3>Sistema de Gestió de Jobs: Slurm</h3>                                                                                                           <p>                                                                                                                                                     Un cop dins del clúster, utilitzem el sistema <strong>Slurm Management</strong>. Podeu trobar la documentació oficial en aquest enllaç:
-                <a href="https://slurm.schedmd.com/documentation.html" target="_blank">Documentació de Slurm</a>.
-		    Per a més informació sobre el nostre cluster de càlcul, veieu la presentació 
-		    <figure>
-    			<a href="imatges/presentacio.pdf" target="_blank">Presentació clúster de càlcul UVic-UCC</a>
-    			<figcaption>Last update 15/01/2025</figcaption>
-		    </figure>
-            </p>
-            <h3>Administradors del clúster</h3>
-            <ul>
-                <li><strong>Jordi Sala Serra</strong>: Tècnic de l'àrea TIC de la UVic-UCC (<a href="mailto:jordi.sala@uvic.cat">jordi.sala@uvic.cat</a>).</li>
-                <li><strong>Roger Casals Franch</strong>: Responsable d'usuaris i programari de recerca, INVESTIGO a l'IRIS-CC i doctorand al SGR BI² (<a href="mailto:roger.casals@uvic.cat">roger.casals@uvic.cat</a>).</li>
-            </ul>
-        </section>
+        <div data-lang="ca">
+            <section id="introduccio">
+                <h2>Introducció i Recursos del Clúster</h2>
+                <p>
+                    Aquest manual està dissenyat per ajudar els nous usuaris del clúster de càlcul de la UVic-UCC. El seu objectiu
+                    és proporcionar les eines necessàries per començar a utilitzar el clúster de manera eficient. Es recomana tenir
+                    coneixements bàsics del sistema Unix per poder treballar còmodament.
+                </p>
+                <h3>Què és un clúster de càlcul?</h3>
+                <p>
+                    Un clúster de càlcul és un conjunt d'ordinadors que treballen conjuntament per processar tasques de manera
+                    eficient. Un dels ordinadors, anomenat node mestre o node d'inici de sessió, s'encarrega d'assignar els
+                    programes (anomenats jobs) als altres ordinadors mitjançant un gestor de cues (scheduler).
+                </p>
+                <figure>
+                    <img src="imatges/compute_cluster.png" alt="Representació d'un clúster de càlcul" style="max-width: 100%; height: auto;">
+                    <figcaption>Representació esquemàtica d'un clúster de càlcul.</figcaption>
+                </figure>
+                <h3>Recursos del Clúster</h3>
+                <ul>
+                    <li><strong>112 CPUs:</strong> Distribuïdes en diferents nodes per optimitzar el càlcul paral·lel.</li>
+                    <li><strong>515 GB de RAM:</strong> Repartida segons les necessitats dels usuaris.</li>
+                    <li><strong>2 GPUs:</strong> Disponibles per a càlculs d'intel·ligència artificial.</li>
+                    <li><strong>8 TB d'emmagatzematge:</strong> Per guardar dades i resultats.</li>
+                </ul>
+                <h3>Sistema de Gestió de Jobs: Slurm</h3>
+                <p>
+                    Un cop dins del clúster, utilitzem el sistema <strong>Slurm Management</strong>. Podeu trobar la documentació oficial en aquest enllaç:
+                    <a href="https://slurm.schedmd.com/documentation.html" target="_blank">Documentació de Slurm</a>.
+                    Per a més informació sobre el nostre cluster de càlcul, veieu la presentació.
+                </p>
+                <figure>
+                    <a href="imatges/presentacio.pdf" target="_blank">Presentació clúster de càlcul UVic-UCC</a>
+                    <figcaption>Last update 15/01/2025</figcaption>
+                </figure>
+                <h3>Administradors del clúster</h3>
+                <ul>
+                    <li><strong>Jordi Sala Serra</strong>: Tècnic de l'àrea TIC de la UVic-UCC (<a href="mailto:jordi.sala@uvic.cat">jordi.sala@uvic.cat</a>).</li>
+                    <li><strong>Roger Casals Franch</strong>: Responsable d'usuaris i programari de recerca, INVESTIGO a l'IRIS-CC i doctorand al SGR BI² (<a href="mailto:roger.casals@uvic.cat">roger.casals@uvic.cat</a>).</li>
+                </ul>
+            </section>
 
-        <section id="vpn-ssh">
-            <h2>Connectar-se via VPN i SSH</h2>
-            <h3>1. Connexió VPN</h3>
-            <p>
-	        Primer de tot, per tal de connectar-vos al cluster, heu d'obrir el túnel via VPN. Us heu de descarregar la versió de <a href="https://www.fortinet.com/support/product-downloads" target="_blank">Forticlient</a> que sigui compatible amb el vostre sistema operatiu. 
-		Seguidament un cop us hagueu descarregat FortiClient, heu d'anar a l'apartat "Remote Access" i configurar de la següent manera.
-	    <ul>
-		<li><strong>Teams</strong> Haureu estat acceptat dins d'un grup d'Users, a l'apartat Bloc de notes de l'HPC trobareu com connectar-vos via VPN. </li>
-            </p>
-            <h3>2. Connexió SSH</h3>
-            <p>
-                Un cop hagueu activat la connexió via VPN. Per connectar-vos al clúster, executeu la següent comanda al terminal:
-            </p>
-            <pre><code>ssh -l nom.cognom@uvic.cat lavandula.uvic.local</code></pre>
-            <p>
-                Introduïu la contrasenya del vostre Campus Virtual quan us la demani. 
-                Tingueu en compte que no podeu treballar de manera interactiva al clúster; és obligatori enviar jobs mitjançant Slurm.
-            </p>
-        </section>
+            <section id="vpn-ssh">
+                <h2>Connectar-se via VPN i SSH</h2>
+                <h3>1. Connexió VPN</h3>
+                <p>
+                    Primer de tot, per tal de connectar-vos al cluster, heu d'obrir el túnel via VPN. Us heu de descarregar la versió de <a href="https://www.fortinet.com/support/product-downloads" target="_blank">Forticlient</a> que sigui compatible amb el vostre sistema operatiu.
+                    Seguidament, un cop us hagueu descarregat FortiClient, heu d'anar a l'apartat "Remote Access" i configurar-lo de la manera següent.
+                </p>
+                <ul>
+                    <li><strong>Teams</strong>: Haureu estat acceptat dins d'un grup d'users. A l'apartat Bloc de notes de l'HPC trobareu com connectar-vos via VPN.</li>
+                </ul>
+                <h3>2. Connexió SSH</h3>
+                <p>
+                    Un cop hagueu activat la connexió via VPN, per connectar-vos al clúster executeu la següent comanda al terminal:
+                </p>
+                <pre><code>ssh -l nom.cognom@uvic.cat lavandula.uvic.local</code></pre>
+                <p>
+                    Introduïu la contrasenya del vostre Campus Virtual quan us la demani.
+                    Tingueu en compte que no podeu treballar de manera interactiva al clúster; és obligatori enviar jobs mitjançant Slurm.
+                </p>
+            </section>
 
-  
-        <section id="guia-basica">
-            <h2>Guia Bàsica per Enviar Jobs</h2>
-            <h3>1. Crear un Fitxer de Treball (Script sbatch)</h3>
-            <p>
-                Es recomana mantenir una estructura clara per als vostres directoris:
-            </p>
-            <ul>
-		    Per a tal de crear directoris al vostre "home", heu d'utilitzar  <pre><code>mkdir</code></pre>
-                <li><strong>data/</strong>: Conté les dades d'entrada.</li>
-                <li><strong>results/</strong>: Guarda els resultats del càlcul.</li>
-                <li><strong>scripts/</strong>: Inclou els scripts de treball (<code>.sh</code>).</li>
-            </ul>
-		Heu de crear un fitxer de 0, que contingui les comandes #SBATCH i canviar-les segons els requeriments.
-            <h4>Exemple de Script Bàsic:</h4>
-            <pre><code>
-#!/bin/bash
+            <section id="guia-basica">
+                <h2>Guia Bàsica per Enviar Jobs</h2>
+                <h3>1. Crear un Fitxer de Treball (Script sbatch)</h3>
+                <p>
+                    Es recomana mantenir una estructura clara per als vostres directoris:
+                </p>
+                <ul>
+                    <li>Per crear directoris al vostre <code>home</code>, heu d'utilitzar <code>mkdir</code>.</li>
+                    <li><strong>data/</strong>: Conté les dades d'entrada.</li>
+                    <li><strong>results/</strong>: Guarda els resultats del càlcul.</li>
+                    <li><strong>scripts/</strong>: Inclou els scripts de treball (<code>.sh</code>).</li>
+                </ul>
+                <p>Heu de crear un fitxer de 0, que contingui les comandes <code>#SBATCH</code>, i canviar-les segons els requeriments.</p>
+                <h4>Exemple de Script Bàsic:</h4>
+                <pre><code>#!/bin/bash
 #SBATCH --job-name=nom_job          # Nom del job
 #SBATCH --output=sortida.txt        # Fitxer de sortida
 #SBATCH --error=error.txt           # Fitxer d’errors
@@ -120,173 +145,120 @@
 #SBATCH --mem=4GB                   # Memòria assignada
 
 python script.py                    # Execució del vostre codi
-Rscript script.R                    # En cas que fos R	    
-            </code></pre>
-            <p><strong>Comentaris:</strong></p>
-            <ul>
-                <li><code>--job-name</code>: Assigna un nom al vostre job per identificar-lo fàcilment.</li>
-                <li><code>--output</code>: Especifica el fitxer on es guardarà la sortida del job.</li>
-                <li><code>--error</code>: Indica el fitxer on es guardaran els errors.</li>
-                <li><code>--time</code>: Defineix el temps màxim d'execució del job.</li>
-                <li><code>--cpus-per-task</code>: Estableix el nombre de CPUs assignades al job.</li>
-                <li><code>--mem</code>: Defineix la memòria necessària per al job.</li>
-            </ul>
+Rscript script.R                    # En cas que fos R</code></pre>
+                <p><strong>Comentaris:</strong></p>
+                <ul>
+                    <li><code>--job-name</code>: Assigna un nom al vostre job per identificar-lo fàcilment.</li>
+                    <li><code>--output</code>: Especifica el fitxer on es guardarà la sortida del job.</li>
+                    <li><code>--error</code>: Indica el fitxer on es guardaran els errors.</li>
+                    <li><code>--time</code>: Defineix el temps màxim d'execució del job.</li>
+                    <li><code>--cpus-per-task</code>: Estableix el nombre de CPUs assignades al job.</li>
+                    <li><code>--mem</code>: Defineix la memòria necessària per al job.</li>
+                </ul>
 
+                <h2>Comandaments de Slurm</h2>
+                <h3>2. Enviar el Job a Slurm</h3>
+                <p>Per enviar el job, utilitzeu:</p>
+                <pre><code>sbatch job_script.sh</code></pre>
+                <p>Això us retornarà un <strong>Job ID</strong> (per exemple, <code>12345</code>) que us servirà per fer seguiment del job.</p>
 
-	    <h2>Comandaments de Slurm</h2>
-            <h3>2. Enviar el Job a Slurm</h3>
-            <p>Per enviar el job, utilitzeu:</p>
-            <pre><code>sbatch job_script.sh</code></pre>
-            <p>Això us retornarà un <strong>Job ID</strong> (per exemple, <code>12345</code>) que us servirà per fer seguiment del job.</p>
+                <h3>3. Consultar l’Estat dels Vostres Jobs</h3>
+                <p>Per veure l’estat dels vostres jobs (si estan en cua o en execució), utilitzeu:</p>
+                <pre><code>squeue</code></pre>
+                <h4>Estats Comuns:</h4>
+                <ul>
+                    <li><strong>PD (PENDING):</strong> El job està en cua.</li>
+                    <li><strong>R (RUNNING):</strong> El job està en execució.</li>
+                </ul>
 
-            <h3>3. Consultar l’Estat dels Vostres Jobs</h3>
-            <p>Per veure l’estat dels vostres jobs (si estan en cua o en execució), utilitzeu:</p>
-            <pre><code>squeue</code></pre>
-            <h4>Estats Comuns:</h4>
-            <ul>
-                <li><strong>PD (PENDING):</strong> El job està en cua.</li>
-                <li><strong>R (RUNNING):</strong> El job està en execució.</li>
-            </ul>
+                <h3>4. Cancel·lar un Job</h3>
+                <p>Si necessiteu cancel·lar un job, utilitzeu:</p>
+                <pre><code>scancel 12345</code></pre>
 
-            <h3>4. Cancel·lar un Job</h3>
-            <p>Si necessiteu cancel·lar un job, utilitzeu:</p>
-            <pre><code>scancel 12345</code></pre>
+                <h3>5. Comprovar els Recursos Disponibles</h3>
+                <p>Per veure quins recursos (nodes i particions) estan disponibles, utilitzeu:</p>
+                <pre><code>sinfo</code></pre>
+            </section>
 
-            <h3>5. Comprovar els Recursos Disponibles</h3>
-            <p>Per veure quins recursos (nodes i particions) estan disponibles, utilitzeu:</p>
-            <pre><code>sinfo</code></pre>
-        </section>
+            <section id="transferencia">
+                <h2>Comandes bàsiques de SLURM</h2>
+                <h3>1. Consultar l’estat del clúster</h3>
+                <ul>
+                    <li><code>sinfo</code> → Mostra l’estat dels nodes i particions disponibles.</li>
+                    <li><code>squeue</code> → Mostra tots els treballs en cua.</li>
+                    <li><code>squeue -u $USER</code> → Mostra només els teus treballs en cua.</li>
+                    <li><code>squeue -j &lt;job_id&gt;</code> → Consulta l'estat d'un treball específic.</li>
+                </ul>
 
-        <section id="transferencia">
-          <h2>Comandes bàsiques de SLURM</h2>
-    
-    <h3>1. Consultar l’estat del clúster</h3>
-    <ul>
-        <li><code>sinfo</code> → Mostra l’estat dels nodes i particions disponibles.</li>
-        <li><code>squeue</code> → Mostra tots els treballs en cua.</li>
-        <li><code>squeue -u $USER</code> → Mostra només els teus treballs en cua.</li>
-        <li><code>squeue -j <job_id></code> → Consulta l'estat d'un treball específic.</li>
-    </ul>
+                <h3>2. Enviament de treballs</h3>
+                <ul>
+                    <li><code>sbatch script.sh</code> → Envia un treball al clúster mitjançant un script.</li>
+                </ul>
 
-    <h3>2. Enviament de treballs</h3>
-    <ul>
-        <li><code>sbatch script.sh</code> → Envia un treball al clúster mitjançant un script.</li>
+                <h3>3. Gestió de treballs</h3>
+                <ul>
+                    <li><code>scancel &lt;job_id&gt;</code> → Cancel·la un treball específic.</li>
+                    <li><code>scancel -u $USER</code> → Cancel·la tots els teus treballs en execució.</li>
+                    <li><code>scontrol show job &lt;job_id&gt;</code> → Mostra informació detallada d’un treball.</li>
+                    <li><code>seff job &lt;job_id&gt;</code> → Mostra l'informe d'eficiència que s'envia per correu.</li>
+                </ul>
 
-    </ul>
+                <h3>4. Transferència de fitxers</h3>
+                <p>
+                    Per enviar i rebre fitxers entre el vostre ordinador i el clúster, utilitzeu la comanda <code>scp</code>.
+                    Si voleu copiar tot un directori, podeu utilitzar <code>scp -r</code>.
+                    IMPORTANT: La transferència s’ha de fer sempre des del vostre ordinador.
+                </p>
 
-    <h3>3. Gestió de treballs</h3>
-    <ul>
-        <li><code>scancel <job_id></code> → Cancel·la un treball específic.</li>
-        <li><code>scancel -u $USER</code> → Cancel·la tots els teus treballs en execució.</li>
-        <li><code>scontrol show job <job_id></code> → Mostra informació detallada d’un treball.</li>
-	    <li><code>seff job <job_id></code> → Mostra l'informe d'eficiència que s'envia per correu.</li>
-    </ul>
+                <h4>Exemples:</h4>
+                <ul>
+                    <li>
+                        Copiar un fitxer des del vostre ordinador al clúster:
+                        <pre><code>scp fitxer.txt NIU@uvic.local@lavandula:CARPETA/CARPETA</code></pre>
+                    </li>
+                    <li>
+                        Copiar un fitxer del clúster al vostre ordinador:
+                        <pre><code>scp NIU@uvic.local@lavandula:CARPETA/CARPETA/fitxer.txt .</code></pre>
+                        (El punt final indica que es copiarà al directori actual.)
+                    </li>
+                </ul>
+            </section>
 
-    <h3>4. Transferència de fitxers</h3>
-    <p>
-        Per enviar i rebre fitxers entre el vostre ordinador i el clúster, utilitzeu la comanda <code>scp</code>. 
-        Si voleu copiar tot un directori, podeu utilitzar <code>scp -r</code>. 
-        IMPORTANT: La transferència s’ha de fer sempre des del vostre ordinador.
-    </p>
+            <section id="particions">
+                <h2>Informació de Particions</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom de la Partició</th>
+                            <th>Node</th>
+                            <th>CPUs</th>
+                            <th>Memòria (MB)</th>
+                            <th>GPU</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>highmem</td><td>vcompute11</td><td>42</td><td>224452</td><td>0</td></tr>
+                        <tr><td>normal1</td><td>vcompute12</td><td>14</td><td>30052</td><td>0</td></tr>
+                        <tr><td>normal2</td><td>vcompute13</td><td>14</td><td>30052</td><td>0</td></tr>
+                        <tr><td>normal3</td><td>vcompute14</td><td>14</td><td>30052</td><td>0</td></tr>
+                        <tr><td>normal4</td><td>vcompute15</td><td>14</td><td>30052</td><td>0</td></tr>
+                        <tr><td>normal5</td><td>vcompute16</td><td>14</td><td>30052</td><td>0</td></tr>
+                        <tr><td>gpu</td><td>compute02</td><td>40</td><td>32008</td><td>2</td></tr>
+                        <tr><td>lowmem</td><td>compute02</td><td>40</td><td>32008</td><td>0</td></tr>
+                    </tbody>
+                </table>
+            </section>
 
-    <h4>Exemples:</h4>
-    <ul>
-        <li>
-            Copiar un fitxer des del vostre ordinador al clúster:
-            <pre><code>scp fitxer.txt NIU@uvic.local@lavandula:CARPETA/CARPETA</code></pre>
-        </li>
-        <li>
-            Copiar un fitxer del clúster al vostre ordinador:
-            <pre><code>scp NIU@uvic.local@lavandula:CARPETA/CARPETA/fitxer.txt .</code></pre>
-            (El punt final indica que es copiarà al directori actual.)
-        </li>
-    </ul>
-
-        </section>
-
-	    <section id="particions">
-  <h2>Informació de Particions</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Nom de la Partició</th>
-        <th>Node</th>
-        <th>CPUs</th>
-        <th>Memòria (MB)</th>
-        <th>GPU</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>highmem</td>
-        <td>vcompute11</td>
-        <td>42</td>
-        <td>224452</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>normal1</td>
-        <td>vcompute12</td>
-        <td>14</td>
-        <td>30052</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>normal2</td>
-        <td>vcompute13</td>
-        <td>14</td>
-        <td>30052</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>normal3</td>
-        <td>vcompute14</td>
-        <td>14</td>
-        <td>30052</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>normal4</td>
-        <td>vcompute15</td>
-        <td>14</td>
-        <td>30052</td>
-        <td>0</td>
-      </tr>
-	    <tr>
-        <td>normal5</td>
-        <td>vcompute16</td>
-        <td>14</td>
-        <td>30052</td>
-        <td>0</td>
-      </tr>
-      <tr>
-	<td>gpu</td>
-        <td>compute02</td>
-        <td>40</td>
-        <td>32008</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>lowmem</td>
-        <td>compute02</td>
-        <td>40</td>
-        <td>32008</td>
-        <td>0</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-	    <section id="apptainer">
-  <h2>Apptainer</h2>
-  <p>
-    Apptainer és una eina de contenidors dissenyada per facilitar l'execució d'aplicacions amb totes les seves dependències en entorns HPC. Com que ja està instal·lat en el nostre sistema, aquest tutorial se centrarà en com construir i utilitzar imatges de contenidors.
-  </p>
-  
-  <h3>1. Creació d'una imatge amb un fitxer de recepta</h3>
-  <p>
-    El primer pas és crear un fitxer de recepta (definition file).def que descrigui la base i les instruccions per construir la imatge. Per exemple, crea un fitxer anomenat <code>apptainer.def</code> amb el següent contingut:
-  </p>
-  <pre><code>Bootstrap: docker
+            <section id="apptainer">
+                <h2>Apptainer</h2>
+                <p>
+                    Apptainer és una eina de contenidors dissenyada per facilitar l'execució d'aplicacions amb totes les seves dependències en entorns HPC. Com que ja està instal·lat en el nostre sistema, aquest tutorial se centra en com construir i utilitzar imatges de contenidors.
+                </p>
+                <h3>1. Creació d'una imatge amb un fitxer de recepta</h3>
+                <p>
+                    El primer pas és crear un fitxer de recepta (<em>definition file</em>) <code>.def</code> que descrigui la base i les instruccions per construir la imatge. Per exemple, crea un fitxer anomenat <code>apptainer.def</code> amb el següent contingut:
+                </p>
+                <pre><code>Bootstrap: docker
 From: ubuntu:20.04
 
 %post
@@ -294,32 +266,29 @@ From: ubuntu:20.04
 
 %runscript
     exec python3 "$@"</code></pre>
-  <p>
-    Aquest fitxer indica que la imatge es basarà en Ubuntu 20.04 i instal·larà Python3, segons les necessitats de l'usuari
-  </p>
-  
-  <h3>2. Construir la imatge</h3>
-  <p>
-    Una imatge és un fitxer que encapsula tot l'entorn necessari (sistema operatiu, aplicacions i dependències) per executar una aplicació de manera consistent i portable.
-	  Per construir la imatge, obre la terminal i executa: 
-  </p>
-  <pre><code>apptainer build my_image.sif apptainer.def</code></pre>
-  <p>
-    Aquesta comanda crea un fitxer <code>my_image.sif</code> que conté la imatge del teu contenidor.
-  </p>
- <h3>Convertir des de docker</h3>
-<p>
-    Per tal de poder descarregar directament una imatge de de docker, fem servir aquest codi, que generarà un fitxer .sif que ja el podrem executar.
-  </p>
-	  <pre><code>apptainer pull docker://contenidor-d'interès</code></pre>
+                <p>
+                    Aquest fitxer indica que la imatge es basarà en Ubuntu 20.04 i instal·larà Python3, segons les necessitats de l'usuari.
+                </p>
+                <h3>2. Construir la imatge</h3>
+                <p>
+                    Una imatge és un fitxer que encapsula tot l'entorn necessari (sistema operatiu, aplicacions i dependències) per executar una aplicació de manera consistent i portable.
+                    Per construir la imatge, obre la terminal i executa:
+                </p>
+                <pre><code>apptainer build my_image.sif apptainer.def</code></pre>
+                <p>
+                    Aquesta comanda crea un fitxer <code>my_image.sif</code> que conté la imatge del teu contenidor.
+                </p>
+                <h3>Convertir des de docker</h3>
+                <p>
+                    Per tal de poder descarregar directament una imatge de Docker, fem servir aquest codi, que generarà un fitxer <code>.sif</code> que ja podrem executar.
+                </p>
+                <pre><code>apptainer pull docker://contenidor-d'interès</code></pre>
 
-  
-  <h3>3. Executar la imatge</h3>
-  <p>
-    Un cop creada la imatge, pots executar-la creant un altre fitxer sbatch, i per defecte ja podràs usar apptainer.
-  </p>
-   <pre><code>
-#!/bin/bash
+                <h3>3. Executar la imatge</h3>
+                <p>
+                    Un cop creada la imatge, pots executar-la creant un altre fitxer sbatch, i per defecte ja podràs usar Apptainer.
+                </p>
+                <pre><code>#!/bin/bash
 #SBATCH --job-name=apptainer_test    # Nom del job
 #SBATCH --output=output.log          # Fitxer on es guarda la sortida
 #SBATCH --error=error.log            # Fitxer per errors
@@ -329,62 +298,357 @@ From: ubuntu:20.04
 #SBATCH --partition=normal1          # Partició a utilitzar
 
 # Executar la comanda dins del contenidor Apptainer
-apptainer run my_image.sif   # Run fa córrer tot el contenidor, si fessis servir exec, només executa la comanda que es vulgui.
-    </code></pre> 
-  <p>
-    Això obrirà una shell dins el contenidor o executarà l'aplicació definida al bloc <code>%runscript</code> del fitxer de recepta.
-	  
-  </p>
-  
-  <h3>Recursos addicionals</h3>
-  <p>
-    Per a més tutorials i informació detallada sobre com treballar amb imatges en Apptainer, consulta la 
-    <a href="https://apptainer.org/docs/user/main/quick_start.html#" target="_blank">documentació oficial d'Apptainer</a>.
-  </p>
-</section>
+apptainer run my_image.sif   # Run fa córrer tot el contenidor, si fessis servir exec, només executa la comanda que es vulgui.</code></pre>
+                <p>
+                    Això obrirà una shell dins el contenidor o executarà l'aplicació definida al bloc <code>%runscript</code> del fitxer de recepta.
+                </p>
+                <h3>Recursos addicionals</h3>
+                <p>
+                    Per a més tutorials i informació detallada sobre com treballar amb imatges en Apptainer, consulta la
+                    <a href="https://apptainer.org/docs/user/main/quick_start.html#" target="_blank">documentació oficial d'Apptainer</a>.
+                </p>
+            </section>
 
+            <section id="easybuild">
+                <h2>Easybuild</h2>
+                <p>
+                    Easybuild és una eina automatitzada dissenyada per compilar i instal·lar programari en entorns HPC. Facilita la gestió de les dependències i versions, fent que la instal·lació d'aplicacions complexes sigui molt més senzilla i menys propensa a errors.
+                </p>
+                <p>
+                    Aquesta eina és especialment útil per a usuaris novells, ja que redueix la complexitat de configurar el software manualment. Pròximament, també introduirem un tutorial detallat per mostrar-te com utilitzar Easybuild en el teu entorn de treball.
+                </p>
+            </section>
 
-<section id="easybuild">
-  <h2>Easybuild</h2>
-  <p>
-    Easybuild és una eina automatitzada dissenyada per compilar i instal·lar programari en entorns HPC. Facilita la gestió de les dependències i versions, fent que la instal·lació d'aplicacions complexes sigui molt més senzilla i menys propensa a errors.
-  </p>
-  <p>
-    Aquesta eina és especialment útil per a usuaris novells, ja que redueix la complexitat de configurar el software manualment. Pròximament, també introduirem un tutorial detallat per mostrar-te com utilitzar Easybuild en el teu entorn de treball.
-  </p>
-</section>
+            <section id="tiquets">
+                <h2>Com obrir tiquets</h2>
+                <p>
+                    Per tal d'obrir tiquets a l'URespon, ja sigui per a instal·lació de software, altes de usuaris, o problemes de connexió, seguiu el següent tutorial.
+                    Per a més informació, consulteu el document següent.
+                </p>
+                <figure>
+                    <a href="imatges/URespon_cluster.pdf" target="_blank">Tutorial per obrir incidències o sol·licituds per al clúster de càlcul</a>
+                </figure>
+            </section>
 
+            <section id="recursos">
+                <h2>Com interpretar i millorar l'eficiència</h2>
+                <p>
+                    Per garantir un bon funcionament del clúster per a tothom, és important que cada usuari optimitzi els recursos que sol·licita. En aquest tutorial t’expliquem com pots fer-ho de manera senzilla.
+                </p>
+                <figure>
+                    <a href="imatges/use_resources_efficient.pdf" target="_blank">Com optimitzar els recursos, informe d'eficiència</a>
+                </figure>
+            </section>
+        </div>
 
-	    <section id="tiquets">
-  <h2>Com obrir tiquets</h2>
-  <p>
-Per tal d'obrir tiquets a l'URespon, ja sigui per a instal·lació de software, altes de usuaris, o problemes de connexió, seguir el següent tutorial. 
-	  Per a més informació, seguiu el següent tutorial
-	   <figure>
-    			<a href="imatges/URespon_cluster.pdf" target="_blank">Tutorial per obrir incidències o sol·licituds per al clúster de càlcul</a>
-		    </figure>
-  </p>
+        <div data-lang="en" hidden>
+            <section id="introduction">
+                <h2>Introduction and Cluster Resources</h2>
+                <p>
+                    This guide is designed to help new users of the UVic-UCC computing cluster. Its goal is to provide the tools needed to start using the cluster efficiently. Basic knowledge of Unix systems is recommended so you can work comfortably.
+                </p>
+                <h3>What is a computing cluster?</h3>
+                <p>
+                    A computing cluster is a group of computers that work together to process tasks efficiently. One of the computers, called the master node or login node, is responsible for assigning programs (called jobs) to the other computers through a queue manager (scheduler).
+                </p>
+                <figure>
+                    <img src="imatges/compute_cluster.png" alt="Diagram of a computing cluster" style="max-width: 100%; height: auto;">
+                    <figcaption>Schematic representation of a computing cluster.</figcaption>
+                </figure>
+                <h3>Cluster Resources</h3>
+                <ul>
+                    <li><strong>112 CPUs:</strong> Distributed across different nodes to optimize parallel computing.</li>
+                    <li><strong>515 GB RAM:</strong> Allocated according to user needs.</li>
+                    <li><strong>2 GPUs:</strong> Available for artificial intelligence workloads.</li>
+                    <li><strong>8 TB storage:</strong> To store data and results.</li>
+                </ul>
+                <h3>Job Management System: Slurm</h3>
+                <p>
+                    Once you are inside the cluster, we use the <strong>Slurm Management</strong> system. You can find the official documentation here:
+                    <a href="https://slurm.schedmd.com/documentation.html" target="_blank">Slurm documentation</a>.
+                    For more information about our computing cluster, see the presentation below.
+                </p>
+                <figure>
+                    <a href="imatges/presentacio.pdf" target="_blank">UVic-UCC computing cluster presentation</a>
+                    <figcaption>Last update 15/01/2025</figcaption>
+                </figure>
+                <h3>Cluster administrators</h3>
+                <ul>
+                    <li><strong>Jordi Sala Serra</strong>: Technician in the UVic-UCC ICT area (<a href="mailto:jordi.sala@uvic.cat">jordi.sala@uvic.cat</a>).</li>
+                    <li><strong>Roger Casals Franch</strong>: Research software and user support lead, INVESTIGO at IRIS-CC and PhD candidate at SGR BI² (<a href="mailto:roger.casals@uvic.cat">roger.casals@uvic.cat</a>).</li>
+                </ul>
+            </section>
 
-</section>
+            <section id="vpn-ssh-en">
+                <h2>Connect via VPN and SSH</h2>
+                <h3>1. VPN connection</h3>
+                <p>
+                    First of all, to connect to the cluster you must open the VPN tunnel. Download the version of <a href="https://www.fortinet.com/support/product-downloads" target="_blank">FortiClient</a> that is compatible with your operating system.
+                    Once you have installed FortiClient, go to the "Remote Access" section and configure it as follows.
+                </p>
+                <ul>
+                    <li><strong>Teams</strong>: You must have been accepted into a users group. In the HPC Notes section you will find how to connect through the VPN.</li>
+                </ul>
+                <h3>2. SSH connection</h3>
+                <p>
+                    After you activate the VPN connection, run the following command in the terminal to connect to the cluster:
+                </p>
+                <pre><code>ssh -l name.surname@uvic.cat lavandula.uvic.local</code></pre>
+                <p>
+                    Enter your Campus Virtual password when prompted.
+                    Please note that you cannot work interactively on the cluster; jobs must be submitted through Slurm.
+                </p>
+            </section>
 
+            <section id="basic-guide">
+                <h2>Basic Guide to Submitting Jobs</h2>
+                <h3>1. Create a job file (sbatch script)</h3>
+                <p>
+                    It is recommended to keep a clear directory structure:
+                </p>
+                <ul>
+                    <li>To create directories in your <code>home</code>, use <code>mkdir</code>.</li>
+                    <li><strong>data/</strong>: Contains the input data.</li>
+                    <li><strong>results/</strong>: Stores the calculation results.</li>
+                    <li><strong>scripts/</strong>: Includes the job scripts (<code>.sh</code>).</li>
+                </ul>
+                <p>Create a new file containing the <code>#SBATCH</code> directives and adapt them to your requirements.</p>
+                <h4>Basic script example:</h4>
+                <pre><code>#!/bin/bash
+#SBATCH --job-name=job_name         # Job name
+#SBATCH --output=output.txt         # Output file
+#SBATCH --error=error.txt           # Error file
+#SBATCH --time=01:00:00             # Maximum time (hh:mm:ss)
+#SBATCH --cpus-per-task=4           # Number of CPUs per task
+#SBATCH --mem=4GB                   # Assigned memory
 
-	     <section id="recursos">
-  <h2>Com interpretar i millorar l'eficiència</h2>
-  <p>
-Per garantir un bon funcionament del clúster per a tothom, és important que cada usuari optimitzi els recursos que sol·licita. En aquest tutorial t’expliquem com pots fer-ho de manera senzilla.
-	   <figure>
-    			<a href="imatges/use_resources_efficient.pdf" target="_blank">Com optimitzar els recursos, informe d'eficiència</a>
-		    </figure>
-  </p>
+python script.py                    # Run your code
+Rscript script.R                    # If you are running R</code></pre>
+                <p><strong>Comments:</strong></p>
+                <ul>
+                    <li><code>--job-name</code>: Assigns a name to your job so it is easy to identify.</li>
+                    <li><code>--output</code>: Specifies the file where the job output will be stored.</li>
+                    <li><code>--error</code>: Indicates the file where errors will be stored.</li>
+                    <li><code>--time</code>: Defines the maximum execution time for the job.</li>
+                    <li><code>--cpus-per-task</code>: Sets the number of CPUs assigned to the job.</li>
+                    <li><code>--mem</code>: Defines the memory required for the job.</li>
+                </ul>
 
-</section>
+                <h2>Slurm commands</h2>
+                <h3>2. Submit the job to Slurm</h3>
+                <p>To submit the job, use:</p>
+                <pre><code>sbatch job_script.sh</code></pre>
+                <p>This will return a <strong>Job ID</strong> (for example, <code>12345</code>) that you can use to track the job.</p>
 
+                <h3>3. Check the status of your jobs</h3>
+                <p>To see the status of your jobs (whether they are queued or running), use:</p>
+                <pre><code>squeue</code></pre>
+                <h4>Common states:</h4>
+                <ul>
+                    <li><strong>PD (PENDING):</strong> The job is waiting in the queue.</li>
+                    <li><strong>R (RUNNING):</strong> The job is currently running.</li>
+                </ul>
 
+                <h3>4. Cancel a job</h3>
+                <p>If you need to cancel a job, use:</p>
+                <pre><code>scancel 12345</code></pre>
+
+                <h3>5. Check available resources</h3>
+                <p>To see which resources (nodes and partitions) are available, use:</p>
+                <pre><code>sinfo</code></pre>
+            </section>
+
+            <section id="basic-commands">
+                <h2>Basic SLURM commands</h2>
+                <h3>1. Check cluster status</h3>
+                <ul>
+                    <li><code>sinfo</code> → Shows the status of available nodes and partitions.</li>
+                    <li><code>squeue</code> → Shows all queued jobs.</li>
+                    <li><code>squeue -u $USER</code> → Shows only your queued jobs.</li>
+                    <li><code>squeue -j &lt;job_id&gt;</code> → Checks the status of a specific job.</li>
+                </ul>
+
+                <h3>2. Submit jobs</h3>
+                <ul>
+                    <li><code>sbatch script.sh</code> → Submits a job to the cluster using a script.</li>
+                </ul>
+
+                <h3>3. Manage jobs</h3>
+                <ul>
+                    <li><code>scancel &lt;job_id&gt;</code> → Cancels a specific job.</li>
+                    <li><code>scancel -u $USER</code> → Cancels all your running jobs.</li>
+                    <li><code>scontrol show job &lt;job_id&gt;</code> → Shows detailed information about a job.</li>
+                    <li><code>seff job &lt;job_id&gt;</code> → Shows the efficiency report that is sent by email.</li>
+                </ul>
+
+                <h3>4. File transfer</h3>
+                <p>
+                    To send and receive files between your computer and the cluster, use the <code>scp</code> command.
+                    If you want to copy an entire directory, you can use <code>scp -r</code>.
+                    IMPORTANT: Transfers must always be started from your own computer.
+                </p>
+
+                <h4>Examples:</h4>
+                <ul>
+                    <li>
+                        Copy a file from your computer to the cluster:
+                        <pre><code>scp file.txt NIU@uvic.local@lavandula:FOLDER/FOLDER</code></pre>
+                    </li>
+                    <li>
+                        Copy a file from the cluster to your computer:
+                        <pre><code>scp NIU@uvic.local@lavandula:FOLDER/FOLDER/file.txt .</code></pre>
+                        (The final dot means it will be copied to the current directory.)
+                    </li>
+                </ul>
+            </section>
+
+            <section id="partitions">
+                <h2>Partition Information</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Partition Name</th>
+                            <th>Node</th>
+                            <th>CPUs</th>
+                            <th>Memory (MB)</th>
+                            <th>GPU</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>highmem</td><td>vcompute11</td><td>42</td><td>224452</td><td>0</td></tr>
+                        <tr><td>normal1</td><td>vcompute12</td><td>14</td><td>30052</td><td>0</td></tr>
+                        <tr><td>normal2</td><td>vcompute13</td><td>14</td><td>30052</td><td>0</td></tr>
+                        <tr><td>normal3</td><td>vcompute14</td><td>14</td><td>30052</td><td>0</td></tr>
+                        <tr><td>normal4</td><td>vcompute15</td><td>14</td><td>30052</td><td>0</td></tr>
+                        <tr><td>normal5</td><td>vcompute16</td><td>14</td><td>30052</td><td>0</td></tr>
+                        <tr><td>gpu</td><td>compute02</td><td>40</td><td>32008</td><td>2</td></tr>
+                        <tr><td>lowmem</td><td>compute02</td><td>40</td><td>32008</td><td>0</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="apptainer-en">
+                <h2>Apptainer</h2>
+                <p>
+                    Apptainer is a container tool designed to make it easier to run applications with all their dependencies in HPC environments. Since it is already installed on our system, this tutorial focuses on how to build and use container images.
+                </p>
+                <h3>1. Create an image with a recipe file</h3>
+                <p>
+                    The first step is to create a recipe file (<em>definition file</em>) <code>.def</code> that describes the base image and the instructions used to build it. For example, create a file called <code>apptainer.def</code> with the following content:
+                </p>
+                <pre><code>Bootstrap: docker
+From: ubuntu:20.04
+
+%post
+    apt-get update && apt-get install -y python3     # Install any packages / libraries you need here
+
+%runscript
+    exec python3 "$@"</code></pre>
+                <p>
+                    This file indicates that the image will be based on Ubuntu 20.04 and will install Python3, depending on the user's needs.
+                </p>
+                <h3>2. Build the image</h3>
+                <p>
+                    An image is a file that packages the full environment needed to run an application consistently and portably, including the operating system, applications, and dependencies.
+                    To build the image, open a terminal and run:
+                </p>
+                <pre><code>apptainer build my_image.sif apptainer.def</code></pre>
+                <p>
+                    This command creates a file called <code>my_image.sif</code> that contains your container image.
+                </p>
+                <h3>Convert from Docker</h3>
+                <p>
+                    To download an image directly from Docker, use the following command, which will generate a <code>.sif</code> file that you can run immediately.
+                </p>
+                <pre><code>apptainer pull docker://container-of-interest</code></pre>
+
+                <h3>3. Run the image</h3>
+                <p>
+                    Once the image has been created, you can run it by creating another sbatch file. Apptainer will then be available by default.
+                </p>
+                <pre><code>#!/bin/bash
+#SBATCH --job-name=apptainer_test    # Job name
+#SBATCH --output=output.log          # File where the output is stored
+#SBATCH --error=error.log            # Error file
+#SBATCH --time=00:10:00              # Maximum execution time
+#SBATCH --mem=1G                     # Total required memory
+#SBATCH --cpus-per-task=1            # Number of CPUs
+#SBATCH --partition=normal1          # Partition to use
+
+# Run the command inside the Apptainer container
+apptainer run my_image.sif   # run executes the full container; exec would only run the specific command you provide.</code></pre>
+                <p>
+                    This will open a shell inside the container or execute the application defined in the <code>%runscript</code> block of the recipe file.
+                </p>
+                <h3>Additional resources</h3>
+                <p>
+                    For more tutorials and detailed information about working with Apptainer images, see the
+                    <a href="https://apptainer.org/docs/user/main/quick_start.html#" target="_blank">official Apptainer documentation</a>.
+                </p>
+            </section>
+
+            <section id="easybuild-en">
+                <h2>Easybuild</h2>
+                <p>
+                    Easybuild is an automated tool designed to compile and install software in HPC environments. It simplifies dependency and version management, making the installation of complex applications much easier and less error-prone.
+                </p>
+                <p>
+                    This tool is especially useful for new users because it reduces the complexity of configuring software manually. A more detailed tutorial on how to use Easybuild in your working environment will be added soon.
+                </p>
+            </section>
+
+            <section id="tickets">
+                <h2>How to open tickets</h2>
+                <p>
+                    To open tickets in URespon, whether for software installation, new user registrations, or connection problems, follow the tutorial below.
+                    For more information, see the following document.
+                </p>
+                <figure>
+                    <a href="imatges/URespon_cluster.pdf" target="_blank">Tutorial to open incidents or requests for the computing cluster</a>
+                </figure>
+            </section>
+
+            <section id="resources">
+                <h2>How to understand and improve efficiency</h2>
+                <p>
+                    To ensure the cluster works well for everyone, it is important that each user optimizes the resources they request. In this tutorial, we explain how to do this in a simple way.
+                </p>
+                <figure>
+                    <a href="imatges/use_resources_efficient.pdf" target="_blank">How to optimize resources, efficiency report</a>
+                </figure>
+            </section>
+        </div>
     </main>
 
     <footer>
-        <p>Manual creat per ajudar a nous usuaris del clúster UVic-UCC.</p>
+        <p data-lang="ca">Manual creat per ajudar a nous usuaris del clúster UVic-UCC.</p>
+        <p data-lang="en" hidden>Guide created to help new users of the UVic-UCC cluster.</p>
     </footer>
+
+    <script>
+        const languageButtons = document.querySelectorAll('[data-lang-button]');
+        const languageBlocks = document.querySelectorAll('[data-lang]');
+
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+
+            languageBlocks.forEach((block) => {
+                const matches = block.getAttribute('data-lang') === lang;
+                block.hidden = !matches;
+            });
+
+            languageButtons.forEach((button) => {
+                const isActive = button.getAttribute('data-lang-button') === lang;
+                button.classList.toggle('is-active', isActive);
+                button.setAttribute('aria-pressed', String(isActive));
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        languageButtons.forEach((button) => {
+            button.addEventListener('click', () => setLanguage(button.getAttribute('data-lang-button')));
+        });
+    </script>
 </body>
 </html>
-

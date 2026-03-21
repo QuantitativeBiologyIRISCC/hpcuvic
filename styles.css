@@ -11,15 +11,43 @@ body {
 header {
     display: flex;
     align-items: center;
-    gap: 1rem; /* spacing between image and title */
+    justify-content: space-between;
+    gap: 1rem;
     padding: 1rem;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+    margin: 0 0 0.75rem;
 }
 
 .logo {
-    height: 20px; /* or 30px, adjust as needed */
+    height: 20px;
     object-fit: contain;
 }
 
+.language-toggle {
+    display: inline-flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.language-button {
+    border: 1px solid #0056b3;
+    background: white;
+    color: #0056b3;
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.language-button.is-active,
+.language-button:hover {
+    background: #0056b3;
+    color: white;
+}
 
 /* Navigation styles */
 nav {
@@ -45,6 +73,11 @@ nav ul li a {
 
 nav ul li a:hover {
     text-decoration: underline;
+}
+
+nav ul ul {
+    margin-left: 20px;
+    list-style-type: circle;
 }
 
 /* Section styles */
@@ -77,6 +110,17 @@ code {
     color: #d63384;
 }
 
+figure {
+    margin-left: 0;
+}
+
+footer {
+    padding: 1rem;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    background: white;
+}
+
 /* Table styles */
 table {
     width: 100%;
@@ -86,7 +130,8 @@ table {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
@@ -101,8 +146,9 @@ tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-nav ul ul {
-    margin-left: 20px;
-    list-style-type: circle;
+@media (max-width: 700px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
-
