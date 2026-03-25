@@ -24,8 +24,9 @@
             <li><a href="#introduccio">Introducció i Recursos del Clúster</a></li>
             <li><a href="#vpn-ssh">Connectar-se via VPN i SSH</a></li>
             <li><a href="#guia-basica">Guia Bàsica per Enviar Jobs</a></li>
-            <li><a href="#transferencia">Comandes Bàsiques</a></li>
+            <li><a href="#transferencia">Comandes bàsiques de SLURM</a></li>
             <li><a href="#particions">Característiques de les Particions</a></li>
+            <li><a href="#exemples">Exemples de Scripts</a></li>
             <li>
                 <a href="#apptainer">Tutorials per a usar el Software</a>
                 <ul>
@@ -44,8 +45,9 @@
             <li><a href="#introduction">Introduction and Cluster Resources</a></li>
             <li><a href="#vpn-ssh-en">Connect via VPN and SSH</a></li>
             <li><a href="#basic-guide">Basic Guide to Submitting Jobs</a></li>
-            <li><a href="#basic-commands">Basic Commands</a></li>
+            <li><a href="#basic-commands">Basic SLURM Commands</a></li>
             <li><a href="#partitions">Partition Features</a></li>
+            <li><a href="#examples">Script Examples</a></li>
             <li>
                 <a href="#apptainer-en">Software Tutorials</a>
                 <ul>
@@ -134,7 +136,7 @@
                     <li><strong>results/</strong>: Guarda els resultats del càlcul.</li>
                     <li><strong>scripts/</strong>: Inclou els scripts de treball (<code>.sh</code>).</li>
                 </ul>
-                <p>Heu de crear un fitxer de 0, que contingui les comandes <code>#SBATCH</code>, i canviar-les segons els requeriments.</p>
+                <p>Heu de crear un fitxer de text que contingui les comandes <code>#SBATCH</code> i adaptar-les segons els requeriments del vostre càlcul.</p>
                 <h4>Exemple de Script Bàsic:</h4>
                 <pre><code>#!/bin/bash
 #SBATCH --job-name=nom_job          # Nom del job
@@ -247,6 +249,18 @@ Rscript script.R                    # En cas que fos R</code></pre>
                         <tr><td>lowmem</td><td>compute02</td><td>40</td><td>32008</td><td>0</td></tr>
                     </tbody>
                 </table>
+            </section>
+
+            <section id="exemples">
+                <h2>Exemples de Scripts</h2>
+                <p>
+                    A la carpeta <code>exemples/</code> hi trobareu alguns scripts Slurm de referència per a càlculs de química computacional sobre CPU. Podeu descarregar-los o adaptar-los a les vostres dades i al software instal·lat al clúster.
+                </p>
+                <ul>
+                    <li><a href="exemples/openmm_cpu_parallel.slurm" target="_blank">OpenMM en paral·lel sobre CPU</a></li>
+                    <li><a href="exemples/amber_cpu_parallel.slurm" target="_blank">AMBER en paral·lel sobre CPU</a></li>
+                    <li><a href="exemples/evb_cpu.slurm" target="_blank">EVB sobre CPU</a></li>
+                </ul>
             </section>
 
             <section id="apptainer">
@@ -525,6 +539,18 @@ Rscript script.R                    # If you are running R</code></pre>
                         <tr><td>lowmem</td><td>compute02</td><td>40</td><td>32008</td><td>0</td></tr>
                     </tbody>
                 </table>
+            </section>
+
+            <section id="examples">
+                <h2>Script Examples</h2>
+                <p>
+                    In the <code>exemples/</code> folder you will find a few reference Slurm scripts for computational chemistry CPU jobs. You can download them or adapt them to your own input data and to the software available on the cluster.
+                </p>
+                <ul>
+                    <li><a href="exemples/openmm_cpu_parallel.slurm" target="_blank">OpenMM parallel CPU example</a></li>
+                    <li><a href="exemples/amber_cpu_parallel.slurm" target="_blank">AMBER parallel CPU example</a></li>
+                    <li><a href="exemples/evb_cpu.slurm" target="_blank">EVB CPU example</a></li>
+                </ul>
             </section>
 
             <section id="apptainer-en">
