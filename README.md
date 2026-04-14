@@ -4,6 +4,12 @@ Accedir al manual: <https://quantitativebiologyiriscc.github.io/hpcuvic/>
 
 Accés al tutorial per connectar-te via vpn <https://universitatdevic-my.sharepoint.com/:w:/g/personal/roger_casals_uvic_cat/IQDQoahT7YNaRJxebaX9Eu7SAYsYy3zio19EIM2xVRd76FQ?e=NsyFzn>
 
+Com demanar un usuari?
+UVic-UCC, IRIS-CC, extern
+Per tal de ser usuari via UVic, has d'obrir un URespon <afegir link>
+Si ets usuari des de l'IRIS-CC, has d'obrir un URespon i fer checkbox  <afegir link>
+Si ets usuari extern, ha d'obrir un URespon el responsable de la UVic <afegir link>
+
 Trobaràs una breu explicació de què és un cluster i de les prestacions que té el de la UVic, com connectar-te, com enviar una "job", comandaments bàsics per controlar els teus treballs, també tutorials per a fer servir les eines disponibles al cluster.
 
 Accés al manual en anglès: utilitza la pestanya de llengua de la pàgina principal.
