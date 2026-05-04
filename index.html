@@ -122,6 +122,41 @@
                     Introduïu la contrasenya del vostre Campus Virtual quan us la demani.
                     Tingueu en compte que no podeu treballar de manera interactiva al clúster; és obligatori enviar jobs mitjançant Slurm.
                 </p>
+                <h3>3. Configurar el fitxer SSH config</h3>
+                <p>
+                    Per evitar haver d'escriure tota la comanda SSH cada vegada, podeu configurar el fitxer <code>config</code> dins del directori <code>~/.ssh/</code> del vostre ordinador. Si el fitxer no existeix, el podeu crear.
+                </p>
+                <pre><code>Host lavandula
+    HostName lavandula.uvic.local
+    User nom.cognom@uvic.cat</code></pre>
+                <p>
+                    Un cop guardat el fitxer, i sempre amb la VPN activa, us podreu connectar amb:
+                </p>
+                <pre><code>ssh lavandula</code></pre>
+                <p>
+                    Si feu servir Windows, el fitxer normalment es troba a <code>C:\Users\EL_VOSTRE_USUARI\.ssh\config</code>. A macOS i Linux, el trobareu a <code>~/.ssh/config</code>.
+                </p>
+                <h3>4. Connexió directa amb Visual Studio Code</h3>
+                <p>
+                    També us podeu connectar al clúster directament des de Visual Studio Code utilitzant l'extensió <strong>Remote - SSH</strong>.
+                    Un cop instal·lada, podeu iniciar la connexió des del símbol de connexió remota de Visual Studio Code.
+                </p>
+                <figure>
+                    <img src="imatges/vscode_remote_ssh.png" class="small-illustration" alt="Captura del símbol de connexió remota de Visual Studio Code">
+                    <figcaption>Símbol de connexió remota de Visual Studio Code.</figcaption>
+                </figure>
+                <ol>
+                    <li>Instal·leu l'extensió <strong>Remote - SSH</strong> des del panell d'extensions de Visual Studio Code.</li>
+                    <li>Activeu la connexió VPN.</li>
+                    <li>Cliqueu el símbol de connexió remota de Visual Studio Code i seleccioneu <strong>Connect to Host...</strong>.</li>
+                    <li>Obriu la paleta de comandes amb <code>Ctrl+Shift+P</code> a Windows/Linux o <code>Cmd+Shift+P</code> a macOS.</li>
+                    <li>Alternativament, des de la paleta de comandes seleccioneu <strong>Remote-SSH: Connect to Host...</strong>.</li>
+                    <li>Escolliu <code>lavandula</code> si ja heu configurat el fitxer <code>~/.ssh/config</code>, o bé afegiu un nou host amb la comanda <code>ssh -l nom.cognom@uvic.cat lavandula.uvic.local</code>.</li>
+                    <li>Introduïu la contrasenya del Campus Virtual quan Visual Studio Code us la demani.</li>
+                </ol>
+                <p>
+                    Recordeu que Visual Studio Code només s'ha d'utilitzar per editar fitxers, preparar scripts i consultar resultats. L'execució de càlculs s'ha de fer enviant jobs amb Slurm.
+                </p>
             </section>
 
             <section id="guia-basica">
@@ -411,6 +446,41 @@ apptainer run my_image.sif   # Run fa córrer tot el contenidor, si fessis servi
                 <p>
                     Enter your Campus Virtual password when prompted.
                     Please note that you cannot work interactively on the cluster; jobs must be submitted through Slurm.
+                </p>
+                <h3>3. Configure the SSH config file</h3>
+                <p>
+                    To avoid typing the full SSH command every time, you can configure the <code>config</code> file inside the <code>~/.ssh/</code> directory on your computer. If the file does not exist, you can create it.
+                </p>
+                <pre><code>Host lavandula
+    HostName lavandula.uvic.local
+    User name.surname@uvic.cat</code></pre>
+                <p>
+                    After saving the file, and always with the VPN active, you can connect with:
+                </p>
+                <pre><code>ssh lavandula</code></pre>
+                <p>
+                    On Windows, the file is usually located at <code>C:\Users\YOUR_USER\.ssh\config</code>. On macOS and Linux, it is located at <code>~/.ssh/config</code>.
+                </p>
+                <h3>4. Direct connection with Visual Studio Code</h3>
+                <p>
+                    You can also connect to the cluster directly from Visual Studio Code using the <strong>Remote - SSH</strong> extension.
+                    After installing it, you can start the connection from the Visual Studio Code remote connection icon.
+                </p>
+                <figure>
+                    <img src="imatges/vscode_remote_ssh.png" class="small-illustration" alt="Screenshot of the Visual Studio Code remote connection icon">
+                    <figcaption>Visual Studio Code remote connection icon.</figcaption>
+                </figure>
+                <ol>
+                    <li>Install the <strong>Remote - SSH</strong> extension from the Visual Studio Code extensions panel.</li>
+                    <li>Activate the VPN connection.</li>
+                    <li>Click the Visual Studio Code remote connection icon and select <strong>Connect to Host...</strong>.</li>
+                    <li>Open the command palette with <code>Ctrl+Shift+P</code> on Windows/Linux or <code>Cmd+Shift+P</code> on macOS.</li>
+                    <li>Alternatively, from the command palette select <strong>Remote-SSH: Connect to Host...</strong>.</li>
+                    <li>Choose <code>lavandula</code> if you already configured <code>~/.ssh/config</code>, or add a new host with the command <code>ssh -l name.surname@uvic.cat lavandula.uvic.local</code>.</li>
+                    <li>Enter your Campus Virtual password when Visual Studio Code asks for it.</li>
+                </ol>
+                <p>
+                    Remember that Visual Studio Code should only be used to edit files, prepare scripts, and inspect results. Calculations must be run by submitting jobs with Slurm.
                 </p>
             </section>
 

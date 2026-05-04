@@ -114,6 +114,12 @@ figure {
     margin-left: 0;
 }
 
+.small-illustration {
+    max-width: 176px;
+    width: 100%;
+    height: auto;
+}
+
 footer {
     padding: 1rem;
     text-align: center;
