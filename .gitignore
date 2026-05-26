@@ -1,0 +1,4 @@
+.codex/
+__pycache__/
+.ipynb_checkpoints/*
+!.ipynb_checkpoints/README.md

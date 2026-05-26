@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manual Cluster HPC UVic-UCC</title>
+    <link rel="alternate" hreflang="ca" href="index.html?lang=ca">
+    <link rel="alternate" hreflang="en" href="index.html?lang=en">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,8 +13,8 @@
         <div>
             <h1>Manual Cluster HPC UVic-UCC</h1>
             <div class="language-toggle" aria-label="Language selector">
-                <button type="button" class="language-button is-active" data-lang-button="ca">Català</button>
-                <button type="button" class="language-button" data-lang-button="en">English</button>
+                <a class="language-button is-active" data-lang-button="ca" href="index.html?lang=ca" hreflang="ca" lang="ca">Català</a>
+                <a class="language-button" data-lang-button="en" href="index.html?lang=en" hreflang="en" lang="en">English</a>
             </div>
         </div>
         <img src="imatges/logo_3linies_uvic_color.jpg" class="logo" alt="UVic-UCC logo" style="height: 30px;">
@@ -724,8 +726,54 @@ apptainer run my_image.sif   # run executes the full container; exec would only 
     <script>
         const languageButtons = document.querySelectorAll('[data-lang-button]');
         const languageBlocks = document.querySelectorAll('[data-lang]');
+        const languagePairs = {
+            ca: {
+                introduction: 'introduccio',
+                'vpn-ssh-en': 'vpn-ssh',
+                'basic-guide': 'guia-basica',
+                'basic-commands': 'transferencia',
+                partitions: 'particions',
+                examples: 'exemples',
+                'apptainer-en': 'apptainer',
+                'easybuild-en': 'easybuild',
+                tickets: 'tiquets',
+                resources: 'recursos'
+            },
+            en: {
+                introduccio: 'introduction',
+                'vpn-ssh': 'vpn-ssh-en',
+                'guia-basica': 'basic-guide',
+                transferencia: 'basic-commands',
+                particions: 'partitions',
+                exemples: 'examples',
+                apptainer: 'apptainer-en',
+                easybuild: 'easybuild-en',
+                tiquets: 'tickets',
+                recursos: 'resources'
+            }
+        };
 
-        function setLanguage(lang) {
+        function translatedHash(lang) {
+            const currentId = window.location.hash.slice(1);
+            const nextId = languagePairs[lang][currentId] || currentId;
+            return nextId ? `#${nextId}` : '';
+        }
+
+        function languageUrl(lang) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            url.hash = translatedHash(lang);
+            return `${url.pathname}${url.search}${url.hash}`;
+        }
+
+        function refreshLanguageLinks() {
+            languageButtons.forEach((button) => {
+                const lang = button.getAttribute('data-lang-button');
+                button.setAttribute('href', languageUrl(lang));
+            });
+        }
+
+        function setLanguage(lang, options = {}) {
             document.documentElement.lang = lang;
 
             languageBlocks.forEach((block) => {
@@ -736,15 +784,29 @@ apptainer run my_image.sif   # run executes the full container; exec would only 
             languageButtons.forEach((button) => {
                 const isActive = button.getAttribute('data-lang-button') === lang;
                 button.classList.toggle('is-active', isActive);
-                button.setAttribute('aria-pressed', String(isActive));
+                button.setAttribute('aria-current', isActive ? 'true' : 'false');
             });
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (options.updateUrl) {
+                window.history.pushState({}, '', languageUrl(lang));
+            }
+
+            refreshLanguageLinks();
+
+            if (options.scrollToTop) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
 
         languageButtons.forEach((button) => {
-            button.addEventListener('click', () => setLanguage(button.getAttribute('data-lang-button')));
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                setLanguage(button.getAttribute('data-lang-button'), { updateUrl: true, scrollToTop: true });
+            });
         });
+
+        const requestedLanguage = new URLSearchParams(window.location.search).get('lang');
+        setLanguage(requestedLanguage === 'en' ? 'en' : 'ca');
     </script>
 </body>
 </html>

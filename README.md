@@ -17,6 +17,9 @@ Accés als tutorials per a programes específics:
 
 - Scripts d'exemple Slurm: carpeta `exemples/`
 - Manuals i contingut principal: fitxer `index.html`
+- Scripts de manteniment i traducció de la web: carpeta `code/`
+- Recursos visuals i PDF: carpeta `imatges/`
+- Notebooks de suport: carpetes `scripts/` i `usage/`
 
 Com afegir un nou tutorial:
 
@@ -42,3 +45,9 @@ Com afegir un nou tutorial:
    - Obre `index.html` al navegador i valida que l'enllaç nou funcioni.
    - Revisa que el nou tutorial aparegui al menú correcte i que no hagi trencat la navegació.
 
+Com actualitzar la traducció anglesa:
+
+1. Actualitza primer el bloc català d'`index.html`.
+2. Executa `make -C code check` per comprovar que hi ha blocs de català i anglès.
+3. Si vols regenerar la traducció automàticament, defineix `OPENAI_API_KEY` i `OPENAI_MODEL` i executa `make -C code translate`.
+4. Revisa manualment la traducció generada abans de publicar.

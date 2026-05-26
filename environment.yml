@@ -1,0 +1,7 @@
+name: hpcuvic
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.11
+  - jupyterlab
+  - nbformat
